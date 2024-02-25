@@ -12,7 +12,7 @@ const Register = () => {
 
     try{
       // add post api in the below empty coloun  ex = {axios.post('api')}
-      await axios.post('',{name, email, password})
+      await axios.post('http://127.0.0.1:8000/form/',{name, email, password})
     } catch(err){
       console.log(err)
     }
