@@ -12,7 +12,9 @@ const Register = () => {
 
     try{
       // add post api in the below empty coloun  ex = {axios.post('api')}
-      await axios.post('http://127.0.0.1:8000/form/',{name, email, password})
+      await axios.post('http://127.0.0.1:8000/register/',{ username: name,  
+      email: email,
+      password: password})
     } catch(err){
       console.log(err)
     }
@@ -33,13 +35,13 @@ const Register = () => {
           <div className='mb-4'>
             <label htmlFor="email" className='font-semibold'>Email </label> <br></br>
             <input required type="email" id="email" name="email" className='w-full mt-2 p-2 border border-slate-500 rounded-md' placeholder='johnDoe@gmail.com'
-              onchange = {(e) => setEmail(e.target.value)}
+              onChange = {(e) => setEmail(e.target.value)}
             />
           </div>
           <div className='mb-4'>
             <label htmlFor="password" className='font-semibold'>Password </label>
             <input required type="password" id="password" className='w-full mt-2 p-2 border border-slate-500 rounded-md' placeholder='*******'
-              onchange = {(e) => setPassword(e.target.value)}
+              onChange = {(e) => setPassword(e.target.value)}
             />
           </div>
           <div className='flex justify-between mb-4'>
