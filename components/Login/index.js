@@ -10,63 +10,76 @@ const Login = () => {
 
   const router = useRouter();
 
-  const handleSubmit = async (e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
       setError('All fields are required.');
       return;
     }
+    // router.push("/form");
 
-    try{
-      const res = await axios.post('http://127.0.0.1:8000/register/',{email, password});
-
-      if(!res.ok){
-        setError("Invalid  email or password");
-        return;
-      } else{
+    try {
+      await axios.post('http://127.0.0.1:8000/login/', { username: email, password: password })
+      .then((res)=>{
+        const token = res.data;
         router.push("/form");
-      }
-    } catch(err){
+      })
+      
+
+      // if (!res.ok) {
+      //   setError("Invalid Email or Password");
+      //   return;
+      // }
+
+      // const data = await res.json();
+      // const token = data.token;
+      // Cookies.set('token', token)
+
+      // console.log(token);
+
+
+
+    } catch (err) {
       console.log(err);
     }
 
   }
 
-    return <>
+  return <>
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    <div className='w-[25%] p-5 border-t-4 border-green-400 rounded-md bg-slate-50'>
-      <div className='text-xl font-bold mb-6'>Login</div>
-      <form onSubmit={handleSubmit}>
-        <div className='mb-4'>
-          <label htmlFor="email" className='font-semibold'> Email </label> <br></br>
-          <input  type="email" id="email" name="email" className='w-full mt-2 p-2 border border-slate-500 rounded-md' placeholder='johnDoe@gmail.com' 
-          onChange={e => setEmail(e.target.value)}
-          />
-        </div>
-        <div className='mb-4'>
-          <label htmlFor="password" className='font-semibold'> Password </label>
-          <input type="password" id="password" className='w-full mt-2 p-2 border border-slate-500 rounded-md' placeholder='*******' 
-          onChange={e => setPassword(e.target.value)}
-          />
-        </div>
-        <div className='flex justify-between mb-4'>
-          <button className='bg-green-600 hover:bg-green-800 text-white font-semibold py-2 px-4 rounded'
-            type='submit'
-          >Login</button>
-        </div>
+      <div className='w-[25%] p-5 border-t-4 border-green-400 rounded-md bg-slate-50'>
+        <div className='text-xl font-bold mb-6'>Login</div>
+        <form onSubmit={handleSubmit}>
+          <div className='mb-4'>
+            <label htmlFor="email" className='font-semibold'> Email </label> <br></br>
+            <input type="email" id="email" name="email" className='w-full mt-2 p-2 border border-slate-500 rounded-md' placeholder='johnDoe@gmail.com'
+              onChange={e => setEmail(e.target.value)}
+            />
+          </div>
+          <div className='mb-4'>
+            <label htmlFor="password" className='font-semibold'> Password </label>
+            <input type="password" id="password" className='w-full mt-2 p-2 border border-slate-500 rounded-md' placeholder='*******'
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
+          <div className='flex justify-between mb-4'>
+            <button className='bg-green-600 hover:bg-green-800 text-white font-semibold py-2 px-4 rounded'
+              type='submit'
+            >Login</button>
+          </div>
 
-        <div className='mb-4'>
+          <div className='mb-4'>
             <p className='text-red-500'>{error}</p>
           </div>
 
 
-        <div className='w-full text-right'>
-          <span>Don't have an account? <Link href={"/register"} className='underline'>Register</Link></span>
-        </div>
-      </form>
-    </div>
-      
+          <div className='w-full text-right'>
+            <span>Don't have an account? <Link href={"/register"} className='underline'>Register</Link></span>
+          </div>
+        </form>
+      </div>
+
     </main>
   </>
 }

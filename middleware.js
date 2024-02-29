@@ -1,3 +1,4 @@
+import next from "next"
 import { NextResponse } from "next/server"
 
 export function middleware(req){
@@ -8,11 +9,11 @@ export function middleware(req){
     const token = req.cookies.get('token')?.value || ''
 
     if(isPublicPath && token) {
-        return NextResponse.redirect(new URL('/form', req.nextUrl))
+        return NextResponse.redirect('/form')
     }
 
     if(!isPublicPath && !token) { 
-        return NextResponse.redirect(new URL('/', req.nextUrl))
+        return NextResponse.redirect('/')
     
     }
 }
