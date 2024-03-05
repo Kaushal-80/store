@@ -2,6 +2,8 @@ import axios from 'axios';
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -18,7 +20,17 @@ const Register = () => {
     e.preventDefault();
 
     if (!name || !email || !password || !cpassword) {
-      setError('All fields are required.');
+      toast.error("All fields are required", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        // transition: Bounce,
+      });
       return;
     }
 
@@ -32,19 +44,32 @@ const Register = () => {
         username: name,
         email: email,
         password: password
-      })
+      });
 
-      if (res.ok) {
+      if (res.status === 201) {
         router.push("/");
       }
+
     } catch (err) {
-      console.log(err)
+      console.log(err);
+      toast.error("An error occurred while submitting form data.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        // transition: Bounce,
+      });
     }
   }
 
 
 
   return <>
+    <ToastContainer />
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
 
       <div className='w-[30%] p-5 border-t-4 border-green-400 rounded-md bg-slate-50'>
