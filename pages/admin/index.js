@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CSVLink } from 'react-csv';
 import { format } from 'date-fns';
+import NavbarWithCookies from '@/components/Navbar';
 
 
 
@@ -84,7 +85,7 @@ const admin = () => {
 
 
     return <>
-        <Navbar />
+        <NavbarWithCookies />
         <ToastContainer />
         <header>
             <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -99,14 +100,14 @@ const admin = () => {
             </div>
         </header>
 
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-screen-xl mx-auto sm:px-4 ">
             <div className="flex justify-end my-4">
                 <input
                     type="search"
                     placeholder="Search"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="border border-slate-500 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    className="sm:text-sm border border-slate-500 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                 />
 
                 <input
@@ -114,33 +115,34 @@ const admin = () => {
                     placeholder="Start Date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="border border-slate-500 ml-2 px-3 py-2  rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    className="sm:text-sm  border border-slate-500 ml-2 px-3 py-2  rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                 />
                 <input
                     type="date"
                     placeholder="End Date"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="border border-slate-500 ml-2 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    className="sm:text-sm border border-slate-500 ml-2 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                 />
 
             </div>
 
 
             <CSVLink data={csvData}>
-                <button className="rounded-lg border border-green-600 bg-green-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-800 hover:bg-green-800 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">Export To Excel</button>
+                <button className=" sm:text-sm rounded-md border border-green-600 bg-green-600 px-8 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-800 hover:bg-green-800 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">Export To Excel</button>
             </CSVLink>
 
 
-            <div className="mt-5 sm:mt-0">
+            <div className="my-5 sm:mt-0 ">
                 <div className="sm:block sm:text-right">
-                    <span className="text-md ">
+                    <span className="text-md text-gray-500 ">
                         Filtered data count: {filteredCount}
                     </span>
                 </div>
             </div>
 
-            <table id="table-to-xls" className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+            <div className="table-container overflow-x-auto">
+            <table className="w-full border-collapse bg-white text-left text-sm text-gray-500  ">
                 <thead className="bg-gray-50">
                     <tr>
                         <th scope="col" className="px-6 py-4 font-medium text-gray-900">Name</th>
@@ -166,7 +168,8 @@ const admin = () => {
                             <td className="px-6 py-4">{format(new Date(d.dr_date), 'dd-MM-yyyy')}</td>
 
 
-                            <td className="flex justify-end gap-4 px-6 py-4 font-medium "><Link href={'/delete/' + d.id} className='hover:text-red-500 hover:underline'>Delete</Link>
+                            <td className="flex justify-end gap-4 px-6 py-4 font-medium ">
+                                <Link href={{ pathname: '/delete/' + d.id, query: { id: d.id } }} className='hover:text-red-500 hover:underline'>Delete</Link>
                                 <Link href={{ pathname: '/edit/' + d.id, query: { id: d.id } }} className="text-primary-700 hover:text-green-500 hover:underline">Edit</Link>
                                 <Link href={{ pathname: '/coupon/', query: { id: d.id } }} className="text-primary-700 hover:text-black hover:underline">View</Link>
 
@@ -175,7 +178,7 @@ const admin = () => {
                     ))}
                 </tbody>
             </table>
-
+            </div>
         </div>
 
 

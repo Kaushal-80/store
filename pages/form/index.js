@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar';
+import NavbarWithCookies from '@/components/Navbar';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
@@ -208,20 +208,20 @@ const Form = () => {
 
     // console.log()
     return <>
-        <Navbar />
+        <NavbarWithCookies />
         <ToastContainer />
-        <div className="mx-auto max-w-xl mt-32 mb-3 text-left ">
+        <div className="sm:px-5 lg:px-0 max-w-xl mt-20 mb-3 text-left max-h-screen mx-auto">
             <label htmlFor="example7" className="mb-1 block text-sm font-medium text-gray-700">Draw Date</label>
             <div className='flex gap-4'>
 
                 <input type="date" name='DrawDate'
-                    className="block w-xs rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
-                    placeholder="01/01/1991"
+                    className="block w-xs sm:text-sm rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
+                    placeholder="01/01/1991" 
                     value={DrawDate}
                     onChange={(e) => setDrawDate(e.target.value)}
                 />
                 <button
-                    className="rounded-lg border border-green-600 bg-green-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-800 hover:bg-green-800 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300"
+                    className="rounded-md border border-green-600 bg-green-600 px-8 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-800 hover:bg-green-800 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300"
                 onClick={handleSaveDrawDate}
                 >Save</button>
             </div>
@@ -231,7 +231,7 @@ const Form = () => {
 
 
 
-        <div className="mx-auto max-w-xl">
+        <div className="sm:px-5 lg:px-0 mx-auto  max-w-xl ">
             <form onSubmit={handleSubmit} id="my-form" className="space-y-5 rounded-md border-t-4 border-green-500 p-4 ">
                 <div>
                     <h1 className="text-[30px] font-semibold">Form</h1>
@@ -240,7 +240,7 @@ const Form = () => {
                     <div className="col-span-6 mb-3">
                         <label htmlFor="example7" className="mb-1 block text-sm font-medium text-gray-700">Name</label>
                         <input type="text" id="example7"
-                            className="block w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
+                            className="block sm:text-sm w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
                             placeholder="John Doe"
                             onChange={(e) => { setName(e.target.value) }}
                         />
@@ -248,7 +248,7 @@ const Form = () => {
                     <div className="col-span-6 mb-3">
                         <label htmlFor="example8" className="mb-1 block text-sm font-medium text-gray-700">Mobile No.</label>
                         <input type="text" pattern="[1-9]{1}[0-9]{9}" id="example8"
-                            className="block w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
+                            className="block sm:text-sm w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
                             placeholder="1234567890"
                             onChange={(e) => { setMobile(e.target.value) }}
                         />
@@ -256,7 +256,7 @@ const Form = () => {
                     <div className="col-span-12">
                         <label htmlFor="example9" className="mb-1 block text-sm font-medium text-gray-700">Invoice No.</label>
                         <input type="number" id="example9"
-                            className="block w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
+                            className="block sm:text-sm w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
                             placeholder="2024-02/22/001"
                             onChange={(e) => { setInvoice_no(e.target.value) }}
                         />
@@ -264,7 +264,7 @@ const Form = () => {
                     <div className="col-span-6 mb-3">
                         <label htmlFor="example10" className="mb-1 block text-sm font-medium text-gray-700">Invoice Amount</label>
                         <input type="number" id="example10"
-                            className="block w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
+                            className="block sm:text-sm w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
                             placeholder="5000"
                             onChange={(e) => { setInvoice_amt(e.target.value) }}
                         />
@@ -273,7 +273,7 @@ const Form = () => {
                     <div className="col-span-6 mb-3">
                         <label htmlFor="example10" className="mb-1 block text-sm font-medium text-gray-700">Invoice Date</label>
                         <input type="date" id="example10"
-                            className="block w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
+                            className="block sm:text-sm w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
                             placeholder="01/01/1991"
                             value={invoice_date}
                             readOnly
@@ -283,7 +283,7 @@ const Form = () => {
 
                     <div className="col-span-12">
                         <button type="submit"
-                            className="rounded-lg border border-green-600 bg-green-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-800 hover:bg-green-800 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">Submit</button>
+                            className="rounded-md border border-green-600 bg-green-600 px-8 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-800 hover:bg-green-800 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">Submit</button>
                     </div>
                 </div>
             </form>

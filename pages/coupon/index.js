@@ -14,7 +14,7 @@ const coupon = () => {
   const { id } = router.query
   const [data, setData] = useState('');
   const [formattedDrDate, setFormattedDrDate] = useState('');
-  
+
 
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const coupon = () => {
       })
         .then(res => {
           setData(res.data);
-          
+
         });
     }
   }, [id]);
@@ -40,7 +40,7 @@ const coupon = () => {
     }
   }, [id, data.dr_date]);
 
- 
+
   const handlePrint = () => {
     window.print();
     router.push("/admin")
@@ -50,36 +50,40 @@ const coupon = () => {
 
 
   return <>
-    
+
     <div className="no-print">
       <NavbarWithCookies />
     </div>
 
 
-    <div id="printable-image" className=' mx-auto  w-[40rem] h-[30rem] mt-28 flex flex-col relative items-center justify-center '>
-      <Image className='-rotate-90 w-[30rem] ' src={image} width={0} height={0} />
-      <div className='absolute bottom-6 left-[4.5rem] text-center'>
-        <div className=''>
+    <div className="table-container overflow-x-auto">
+      <div id="printable-image" className=' mx-auto  w-[40rem] h-[30rem] mt-20 flex flex-col relative items-center justify-center '>
+        <Image className='-rotate-90 w-[30rem] ' src={image} width={0} height={0} />
+        <div className='absolute bottom-6 left-[4.5rem] text-center'>
+          <div className=''>
 
-          <h1 className='text-[#ff2e2d] text-xl font-bold'>{data.Token_id}</h1>
-          <p className='text-[#ff2e2d] font-bold'>ड्रा दिनांक : {formattedDrDate}</p>
+            <h1 className='text-[#ff2e2d] text-xl font-bold'>{data.Token_id}</h1>
+            <p className='text-[#ff2e2d] font-bold'>ड्रा दिनांक : {formattedDrDate}</p>
+          </div>
         </div>
+
+        <div className='absolute bottom-16 right-[4rem] text-center'>
+          <div>
+            <p className='text-[#ff2e2d] font-bold'>मो.नं.: {data.Mobile_No}</p>
+          </div> <br></br>
+          <div className=''>
+            <h1 className='text-[#ff2e2d] text-xl font-bold'>{data.Token_id}</h1> <br></br>
+            <p className='text-[#ff2e2d] font-bold'>ड्रा दिनांक : {formattedDrDate}</p>
+          </div>
+        </div>
+
       </div>
 
-      <div className='absolute bottom-16 right-[4rem] text-center'>
-        <div>
-          <p className='text-[#ff2e2d] font-bold'>मो.नं.: {data.Mobile_No}</p>
-        </div> <br></br>
-        <div className=''>
-          <h1 className='text-[#ff2e2d] text-xl font-bold'>{data.Token_id}</h1> <br></br>
-          <p className='text-[#ff2e2d] font-bold'>ड्रा दिनांक : {formattedDrDate}</p>
-        </div>
-      </div>
 
     </div>
 
-    <div className='mx-auto w-[40rem] mt-5 text-center pr-3'>
-      <button className="print-btn rounded-md bg-green-600 hover:bg-green-800 px-5 py-2.5 text-sm font-medium text-white shadow"
+    <div className='flex items-center justify-center w-full mt-5 '>
+      <button className="print-btn rounded-md bg-green-600 hover:bg-green-800 px-8 py-2.5 text-sm font-medium text-white shadow"
         onClick={handlePrint}
       >
         Print

@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NavbarWithCookies from '@/components/Navbar'
 
 const edit = () => {
     const router = useRouter()
@@ -92,17 +93,18 @@ const edit = () => {
     }
 
     return <>
+        <NavbarWithCookies />
         <ToastContainer />
-        <div className="mx-auto max-w-xl my-40">
+        <div className="sm:px-5 lg:px-0 mx-auto  max-w-xl mt-28">
             <form onSubmit={handleSubmit} id="my-form"  className="space-y-5 rounded-md border-t-4 border-green-500 p-4 ">
                 <div>
-                    <h1 className="text-[30px] font-semibold">Form</h1>
+                    <h1 className="text-[30px] font-semibold">Edit Form</h1>
                 </div>
                 <div className="grid grid-cols-12 gap-5">
                     <div className="col-span-6 mb-3">
                         <label className="mb-1 block text-sm font-medium text-gray-700">Name</label>
                         <input type="text" name='Name'
-                            className="block w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
+                            className="block sm:text-sm w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
                             placeholder="John Doe"
                             value={formState.Name}
                             onChange={handleChange}
@@ -111,7 +113,7 @@ const edit = () => {
                     <div className="col-span-6 mb-3">
                         <label className="mb-1 block text-sm font-medium text-gray-700">Mobile No.</label>
                         <input type="text" name='Mobile_No' pattern="[1-9]{1}[0-9]{9}" 
-                            className="block w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
+                            className="block sm:text-sm w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
                             placeholder="1234567890"
                             value={formState.Mobile_No}
                             onChange={handleChange}
@@ -120,7 +122,7 @@ const edit = () => {
                     <div className="col-span-12">
                         <label  className="mb-1 block text-sm font-medium text-gray-700">Invoice No.</label>
                         <input type="number" name='Invoice_no'
-                            className="block w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
+                            className="block sm:text-sm w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
                             placeholder="2024-02/22/001"
                             value={formState.Invoice_no}
                             onChange={handleChange}
@@ -129,7 +131,7 @@ const edit = () => {
                     <div className="col-span-6 mb-3">
                         <label className="mb-1 block text-sm font-medium text-gray-700">Invoice Amount</label>
                         <input type="number" name='Amount'
-                            className="block w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
+                            className="block sm:text-sm w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
                             placeholder="5000"
                             value={formState.Amount}
                             onChange={handleChange}
@@ -139,7 +141,7 @@ const edit = () => {
                     <div className="col-span-6 mb-3">
                         <label className="mb-1 block text-sm font-medium text-gray-700">Invoice Date</label>
                         <input type="date" name='Invoice_date'
-                            className="block w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
+                            className="block sm:text-sm w-full rounded-md shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3 border border-slate-500"
                             placeholder="01/01/1991"
                             value={formState.Invoice_date}
                             readOnly
@@ -149,7 +151,7 @@ const edit = () => {
 
                     <div className="col-span-12">
                         <button type="submit"
-                            className="rounded-lg border border-green-600 bg-green-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-800 hover:bg-green-800 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">Submit</button>
+                            className="rounded-md border border-green-600 bg-green-600 px-8 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-800 hover:bg-green-800 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">Submit</button>
                     </div>
                 </div>
             </form>

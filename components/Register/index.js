@@ -70,9 +70,9 @@ const Register = () => {
 
   return <>
     <ToastContainer />
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-80 flex-col items-center justify-between p-4 ">
 
-      <div className='w-[30%] p-5 border-t-4 border-green-400 rounded-md bg-slate-50'>
+      <div className='w-[30%] mt-20 sm:w-[75%] md:w-[50%] lg:w-[25%] p-5 border-t-4 border-green-400 rounded-md bg-slate-50'>
         <div className='text-xl font-bold mb-6'>Register</div>
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
