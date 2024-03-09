@@ -5,7 +5,7 @@ export function middleware(request){
 
   const authToken = request.cookies.get("token")?.value;
 
-  const loggedInUserNotAccessPaths = request.nextUrl.pathname === "/" || request.nextUrl.pathname === "/register";
+  const loggedInUserNotAccessPaths = request.nextUrl.pathname === "/";
 
   if(loggedInUserNotAccessPaths){
     if(authToken){
@@ -69,6 +69,7 @@ export const config = {
     "/form",
     "/admin",
     "/coupon",
+    "/deleteRecord",
     "/edit/:path*",
     "/delete/:path*",
 

@@ -12,7 +12,7 @@ import NavbarWithCookies from '@/components/Navbar';
 
 
 
-const admin = () => {
+const deleteRecord = () => {
     const router = useRouter();
     const [details, setDetails] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -26,7 +26,7 @@ const admin = () => {
 
     // data getting through api
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/form/', {
+        axios.get('http://127.0.0.1:8000/delrecord/', {
 
             headers: {
                 Authorization: `Token ${Cookies.get('token')}`,
@@ -38,18 +38,7 @@ const admin = () => {
             setCsvData(res.data);
             setFilteredCount(res.data.length);
         })
-        if (router.query.success) {
-            toast.success('Successfully updated the data ', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            })
-        };
+        
 
     }, []);
 
@@ -100,7 +89,6 @@ const admin = () => {
 
     return <>
         <NavbarWithCookies />
-        <ToastContainer />
 
         {/* Welcome messsage */}
         <header>
@@ -108,8 +96,8 @@ const admin = () => {
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <div className="text-center sm:text-left">
 
-                        <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">Welcome Back</h1>
-                        <p className="mt-1.5 text-md text-gray-500">All the data details</p>
+                        <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">Deleted Record</h1>
+                        <p className="mt-1.5 text-md text-gray-500">All information of deleted record</p>
                     </div>
 
                 </div>
@@ -176,7 +164,7 @@ const admin = () => {
                             <th scope="col" className="px-6 py-4 font-medium text-gray-900">Coupon Code</th>
                             <th scope="col" className="px-6 py-4 font-medium text-gray-900">Draw Date</th>
                             <th scope="col" className="px-6 py-4 font-medium text-gray-900">Time</th>
-                            <th scope="col" className="px-6 py-4 font-medium text-gray-900"></th>
+                            <th scope="col" className="px-6 py-4 font-medium text-gray-900">IP Address</th>
                         </tr>
                     </thead>
 
@@ -191,14 +179,8 @@ const admin = () => {
                                 <td className="px-6 py-4">{d.Token_id}</td>
                                 <td className="px-6 py-4">{format(new Date(d.dr_date), 'dd-MM-yyyy')}</td>
                                 <td className="px-6 py-4">{d.time}</td>
+                                <td className="px-6 py-4">{d.deleted_by_ip}</td>
 
-
-                                <td className="flex justify-end gap-4 px-6 py-4 font-medium ">
-                                    <Link href={{ pathname: '/delete/' + d.id, query: { id: d.id } }} className='hover:text-red-500 hover:underline'>Delete</Link>
-                                    <Link href={{ pathname: '/edit/' + d.id, query: { id: d.id } }} className="text-primary-700 hover:text-green-500 hover:underline">Edit</Link>
-                                    <Link href={{ pathname: '/coupon/', query: { id: d.id } }} className="text-primary-700 hover:text-black hover:underline">View</Link>
-
-                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -230,4 +212,4 @@ const admin = () => {
     </>
 }
 
-export default admin
+export default deleteRecord

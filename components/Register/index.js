@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NavbarWithCookies from '../Navbar';
+import Cookies from 'js-cookie';
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -44,10 +46,27 @@ const Register = () => {
         username: name,
         email: email,
         password: password
-      });
+      },{
+
+        headers: {
+            Authorization: `Token ${Cookies.get('token')}`,
+        },
+
+
+    });
 
       if (res.status === 201) {
-        router.push("/");
+        toast.success("Successfully Register", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          // transition: Bounce,
+        })
       }
 
     } catch (err) {
@@ -69,8 +88,9 @@ const Register = () => {
 
 
   return <>
+  <NavbarWithCookies/>
     <ToastContainer />
-    <main className="flex min-h-80 flex-col items-center justify-between p-4 ">
+    <main className="flex mt-20  min-h-80 flex-col items-center justify-between p-4 ">
 
       <div className='w-[30%] mt-20 sm:w-[75%] md:w-[50%] lg:w-[25%] p-5 border-t-4 border-green-400 rounded-md bg-slate-50'>
         <div className='text-xl font-bold mb-6'>Register</div>
@@ -110,9 +130,6 @@ const Register = () => {
           </div>
 
 
-          <div className='w-full text-right'>
-            <span>Already have an account? <Link href={"/"} className='underline'>Login</Link></span>
-          </div>
         </form>
       </div>
     </main>

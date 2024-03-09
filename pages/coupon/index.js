@@ -14,6 +14,7 @@ const coupon = () => {
   const { id } = router.query
   const [data, setData] = useState('');
   const [formattedDrDate, setFormattedDrDate] = useState('');
+  const [formattedInvoiceDate, setFormattedInvoiceDate] = useState('');
 
 
 
@@ -38,12 +39,19 @@ const coupon = () => {
       const formattedDrDate = format(drDate, 'dd-MM-yyyy')
       setFormattedDrDate(formattedDrDate);
     }
-  }, [id, data.dr_date]);
+
+    if (id && data.Invoice_date) {
+      const invoiceDate = parseISO(data.Invoice_date);
+      const formattedInvoiceDate = format(invoiceDate, 'dd-MM-yyyy')
+      setFormattedInvoiceDate(formattedInvoiceDate);
+    }
+
+  }, [id, data.dr_date, data.Invoice_date]);
 
 
   const handlePrint = () => {
     window.print();
-    router.push("/admin")
+    router.push("/form")
   };
 
 
@@ -57,7 +65,7 @@ const coupon = () => {
 
 
     <div className="table-container overflow-x-auto">
-      <div id="printable-image" className=' mx-auto  w-[40rem] h-[30rem] mt-20 flex flex-col relative items-center justify-center '>
+      <div id="printable-image" className=' mx-auto  w-[40rem] h-[30rem] mt-40 flex flex-col relative items-center justify-center '>
         <Image className='-rotate-90 w-[30rem] ' src={image} width={0} height={0} />
         <div className='absolute bottom-6 left-[4.5rem] text-center'>
           <div className=''>
@@ -67,13 +75,17 @@ const coupon = () => {
           </div>
         </div>
 
-        <div className='absolute bottom-16 right-[4rem] text-center'>
-          <div>
+        <div className='absolute bottom-10 right-[4rem] text-center'>
+          <div className='text-left'>
+          
+            <p className='text-[#ff2e2d] font-bold'>नाम: {data.Name}</p>
             <p className='text-[#ff2e2d] font-bold'>मो.नं.: {data.Mobile_No}</p>
-          </div> <br></br>
-          <div className=''>
-            <h1 className='text-[#ff2e2d] text-xl font-bold'>{data.Token_id}</h1> <br></br>
+            <p className='text-[#ff2e2d] font-bold'>इंवोईस नं.: {data.Invoice_no}</p>
+            <p className='text-[#ff2e2d] font-bold'>इंवोईस दिनांक : {formattedInvoiceDate}</p>
             <p className='text-[#ff2e2d] font-bold'>ड्रा दिनांक : {formattedDrDate}</p>
+          </div><br></br>
+          <div className=''>
+            <h1 className='text-[#ff2e2d] text-xl font-bold'>{data.Token_id}</h1> 
           </div>
         </div>
 

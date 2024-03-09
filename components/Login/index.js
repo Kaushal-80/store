@@ -5,13 +5,14 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NavbarWithCookies from '../Navbar';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const router = useRouter();
 
+  // Check if user is already logged
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -29,6 +30,7 @@ const Login = () => {
     });
       return;
     }
+
 
     try {
       const res = await axios.post('http://127.0.0.1:8000/login/', { username: email, password: password });
@@ -82,9 +84,12 @@ const Login = () => {
 
   }
 
+
+  
   return <>
+  <NavbarWithCookies/>
   <ToastContainer />
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 sm:p-5  md:p-8 lg:p-4">
+    <main className="flex mt-20 max-h-screen flex-col items-center justify-between p-24 sm:p-5  md:p-8 lg:p-4">
       <div className=' w-[25%] mt-20 sm:w-[75%] md:w-[50%] lg:w-[25%] p-5 border-t-4 border-green-400 rounded-md bg-slate-50'>
         <div className='text-xl font-bold mb-6'>Login</div>
         <form onSubmit={handleSubmit}>
@@ -107,9 +112,6 @@ const Login = () => {
           </div>
 
 
-          <div className='w-full text-right'>
-            <span>Don't have an account? <Link href={"/register"} className='underline'>Register</Link></span>
-          </div>
         </form>
       </div>
 

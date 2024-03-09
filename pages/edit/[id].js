@@ -95,7 +95,7 @@ const edit = () => {
     return <>
         <NavbarWithCookies />
         <ToastContainer />
-        <div className="sm:px-5 lg:px-0 mx-auto  max-w-xl mt-28">
+        <div className="sm:px-5 lg:px-0 mx-auto  max-w-xl mt-40">
             <form onSubmit={handleSubmit} id="my-form"  className="space-y-5 rounded-md border-t-4 border-green-500 p-4 ">
                 <div>
                     <h1 className="text-[30px] font-semibold">Edit Form</h1>
