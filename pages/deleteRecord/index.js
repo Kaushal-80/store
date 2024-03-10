@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { CSVLink } from 'react-csv';
 import { format } from 'date-fns';
 import NavbarWithCookies from '@/components/Navbar';
 
@@ -18,7 +17,6 @@ const deleteRecord = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-    const [csvData, setCsvData] = useState([]);
     const [filteredCount, setFilteredCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage] = useState(10); // Number of items per page
@@ -35,7 +33,6 @@ const deleteRecord = () => {
 
         }).then(res => {
             setDetails(res.data);
-            setCsvData(res.data);
             setFilteredCount(res.data.length);
         })
         
@@ -80,9 +77,28 @@ const deleteRecord = () => {
     // export to excel and filtered data count logic
     useEffect(() => {
         const filteredData = filterData();
-        setCsvData(filteredData);
         setFilteredCount(filteredData.length);
     }, [searchTerm, startDate, endDate]);
+
+
+    const exportToExcel = () => {
+        axios.get('http://127.0.0.1:8000/exp/', {
+            headers: {
+                Authorization: `Token ${Cookies.get('token')}`,
+            },
+            responseType: 'blob' // Set the response type to blob
+        }).then(response => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'data.xlsx');
+            document.body.appendChild(link);
+            link.click();
+        }).catch(error => {
+            console.error('Error exporting to Excel:', error);
+            // Handle error
+        });
+    };
 
 
 
@@ -135,9 +151,10 @@ const deleteRecord = () => {
 
 
             {/* Export to Excel Button */}
-            <CSVLink data={csvData}>
-                <button className=" sm:text-sm rounded-md border border-green-600 bg-green-600 px-8 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-800 hover:bg-green-800 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">Export To Excel</button>
-            </CSVLink>
+
+            <button onClick={exportToExcel} className="sm:text-sm rounded-md border border-green-600 bg-green-600 px-8 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-800 hover:bg-green-800 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">
+                Export To Excel
+            </button>
 
 
             {/* filtered data count */}
