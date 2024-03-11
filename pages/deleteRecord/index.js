@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { format } from 'date-fns';
+import { format, formatDate } from 'date-fns';
 import NavbarWithCookies from '@/components/Navbar';
 
 
@@ -80,18 +80,38 @@ const deleteRecord = () => {
         setFilteredCount(filteredData.length);
     }, [searchTerm, startDate, endDate]);
 
+    // Function to format date as yyyy-mm-dd
+    const formatDate = (dateString) => {
+        const [year, month, day] = dateString.split('-');
+        return `${year}-${month}-${day}`;
+    };
+
 
     const exportToExcel = () => {
-        axios.get('http://127.0.0.1:8000/exp/', {
+        let apiUrl = 'http://127.0.0.1:8000/delexp/';
+        let filename = 'customer_data.xlsx'; // Default filename
+    
+         // If startDate and endDate are set, format them and append as query parameters
+        if (startDate && endDate) {
+            const formattedStartDate = formatDate(startDate); // Format start date
+            const formattedEndDate = formatDate(endDate); // Format end date
+            apiUrl += `?from_date=${formattedStartDate}&to_date=${formattedEndDate}`;
+            // Update filename based on date range
+        filename = `${format(new Date(formattedStartDate), 'dd-MM-yyyy')} - ${format(new Date(formattedEndDate), 'dd-MM-yyyy')}.xlsx`;
+        }
+
+
+        axios.get(apiUrl, {
             headers: {
                 Authorization: `Token ${Cookies.get('token')}`,
             },
             responseType: 'blob' // Set the response type to blob
-        }).then(response => {
+        })
+        .then(response => {
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', 'data.xlsx');
+            link.setAttribute('download', filename);
             document.body.appendChild(link);
             link.click();
         }).catch(error => {
