@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavbarWithCookies from '@/components/Navbar'
 
-const edit = () => {
+const Edit = () => {
     const router = useRouter()
     const { id } = router.query
 
@@ -159,4 +159,4 @@ const edit = () => {
         </>
 }
 
-export default edit
+export default Edit

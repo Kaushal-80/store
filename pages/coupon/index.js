@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { format, parseISO } from 'date-fns';
 
 
-const coupon = () => {
+const Coupon = () => {
   const router = useRouter()
   const { id } = router.query
   const [data, setData] = useState('');
@@ -106,4 +106,4 @@ const coupon = () => {
   </>
 }
 
-export default coupon
+export default Coupon

@@ -11,7 +11,7 @@ import NavbarWithCookies from '@/components/Navbar';
 
 
 
-const admin = () => {
+const Admin = () => {
     const router = useRouter();
     const [details, setDetails] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -268,4 +268,4 @@ const admin = () => {
     </>
 }
 
-export default admin
+export default Admin

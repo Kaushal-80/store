@@ -11,7 +11,7 @@ import NavbarWithCookies from '@/components/Navbar';
 
 
 
-const deleteRecord = () => {
+const DeleteRecord = () => {
     const router = useRouter();
     const [details, setDetails] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -249,4 +249,4 @@ const deleteRecord = () => {
     </>
 }
 
-export default deleteRecord
+export default DeleteRecord
