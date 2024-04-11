@@ -24,7 +24,7 @@ const Admin = () => {
 
     // data getting through api
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/form/', {
+        axios.get('http://127.0.0.1:8000/api/form/', {
 
             headers: {
                 Authorization: `Token ${Cookies.get('token')}`,
@@ -100,7 +100,7 @@ const Admin = () => {
 
     // Function to handle exporting to Excel
     const exportToExcel = () => {
-        let apiUrl = 'http://127.0.0.1:8000/exp/';
+        let apiUrl = 'http://127.0.0.1:8000/api/exp/';
         let filename = 'customer_data.xlsx'; // By default, export filtered data
 
          // If startDate and endDate are set, format them and append as query parameters

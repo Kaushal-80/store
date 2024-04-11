@@ -25,40 +25,6 @@ export function middleware(request){
     }
   }
 
-  // console.log("Auth token:", authToken);
-
-  // if (authToken) {
-  //   try {
-  //     const decodedToken = jwt.verify(authToken, process.env.JWT_SECRET);
-  //     const username = decodedToken.username; // Assuming the token contains a 'username' property
-
-  //     const loggedInUserNotAccessPaths = request.nextUrl.pathname === "/" || request.nextUrl.pathname === "/register";
-
-  //     if (loggedInUserNotAccessPaths) {
-  //       return NextResponse.redirect(new URL("/form", request.url), {
-  //         headers: {
-  //           'Cache-Control': 'no-store'
-  //         }
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.error("Error verifying token:", error);
-  //     return NextResponse.redirect(new URL("/", request.url), {
-  //       headers: {
-  //         'Cache-Control': 'no-store'
-  //       }
-  //     });
-  //   }
-  // } else {
-  //   return NextResponse.redirect(new URL("/", request.url), {
-  //     headers: {
-  //       'Cache-Control': 'no-store'
-  //     }
-  //   });
-  // }
-
-  // return NextResponse.next();
-
 
 }
 

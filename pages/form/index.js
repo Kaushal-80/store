@@ -61,7 +61,7 @@ const Form = () => {
 
 
         try {
-            const res = await axios.post('http://127.0.0.1:8000/form/', {
+            const res = await axios.post('http://127.0.0.1:8000/api/form/', {
                 Name: name,
                 Mobile_No: mobile,
                 Invoice_no: invoice_no,
@@ -136,7 +136,7 @@ const Form = () => {
 
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/date/drdate/1/', {
+        axios.get('http://127.0.0.1:8000/api/date/drdate/1/', {
 
             headers: {
                 Authorization: `Token ${Cookies.get('token')}`,
@@ -145,7 +145,6 @@ const Form = () => {
 
         }).then(res => {
             setDrawDate(res.data.dr_date);
-            console.log(DrawDate);
         })
 
 
@@ -154,7 +153,7 @@ const Form = () => {
 
     const handleSaveDrawDate = async () => {
         try {
-            await axios.put('http://127.0.0.1:8000/date/drdate/1/', {
+            await axios.put('http://127.0.0.1:8000/api/date/drdate/1/', {
                 dr_date: DrawDate,
             }, {
                 headers: {

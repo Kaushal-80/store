@@ -18,7 +18,7 @@ function DeleteTopic({ cookies  }) {
       
       if (id) {
         // fetch the record with the specified id from your server-side API endpoint
-        axios.get('http://127.0.0.1:8000/form/' + id + '/', {
+        axios.get('http://127.0.0.1:8000/api/form/' + id + '/', {
             headers: {
                 Authorization: `Token ${Cookies.get('token')}`,
             },
@@ -60,7 +60,7 @@ function DeleteTopic({ cookies  }) {
   const deleteTopic = async (e) =>  {
 
     try {
-      const response = await axios.put('http://127.0.0.1:8000/delrecord/' + id + '/',{
+      const response = await axios.put('http://127.0.0.1:8000/api/delrecord/' + id + '/',{
           ...userData,
           is_deleted: true,
           deleted_by_ip: clientIpAddress,

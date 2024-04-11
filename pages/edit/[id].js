@@ -23,7 +23,7 @@ const Edit = () => {
     useEffect(() => {
         if (id) {
             // fetch the record with the specified id from your server-side API endpoint
-            axios.get('http://127.0.0.1:8000/form/' + id + '/', {
+            axios.get('http://127.0.0.1:8000/api/form/' + id + '/', {
                 headers: {
                     Authorization: `Token ${Cookies.get('token')}`,
                 },
@@ -59,7 +59,7 @@ const Edit = () => {
                 }
             };
 
-            const response = await axios.put('http://127.0.0.1:8000/form/'+ id + '/', formState, config);
+            const response = await axios.put('http://127.0.0.1:8000/api/form/'+ id + '/', formState, config);
 
 
             if (response.status === 200) {

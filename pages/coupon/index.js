@@ -21,7 +21,7 @@ const Coupon = () => {
   useEffect(() => {
     if (id) {
       // fetch the record with the specified id from your server-side API endpoint
-      axios.get('http://127.0.0.1:8000/form/' + id + '/', {
+      axios.get('http://127.0.0.1:8000/api/form/' + id + '/', {
         headers: {
           Authorization: `Token ${Cookies.get('token')}`,
         },
@@ -66,7 +66,7 @@ const Coupon = () => {
 
     <div className="table-container overflow-x-auto">
       <div id="printable-image" className=' mx-auto  w-[40rem] h-[30rem] mt-40 flex flex-col relative items-center justify-center '>
-        <Image className='-rotate-90 w-[30rem] ' src={image} width={0} height={0} />
+        <Image className='-rotate-90 w-[30rem] ' src={image} width={0} height={0} alt="coupon"/>
         <div className='absolute bottom-6 left-[4.5rem] text-center'>
           <div className=''>
 

@@ -56,7 +56,7 @@ const Navbar = ({ cookies }) => {
                         Authorization: `Token ${token}`
                     }
                 }
-                const res = await axios.get('http://127.0.0.1:8000/user/', config)
+                const res = await axios.get('http://127.0.0.1:8000/api/user/', config)
                 setUser(res.data)
             } catch (err) {
                 console.log(err);
@@ -227,7 +227,7 @@ const Navbar = ({ cookies }) => {
                                     </Link>
                                 ) : (
                                     <Link
-                                        className="rounded-md bg-green-600 hover:bg-green-800 px-5 py-2.5 text-sm font-medium text-white shadow"
+                                        className="rounded-md bg-green-600 hover:bg-green-800 px-5 py-2.5 text-sm font-medium text-white shadow sm:text-xs"
                                         href="/form"
                                     >
                                         Generate new coupon

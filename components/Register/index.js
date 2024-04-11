@@ -42,7 +42,7 @@ const Register = () => {
     }
 
     try {
-      const res = await axios.post('http://127.0.0.1:8000/register/', {
+      const res = await axios.post('http://127.0.0.1:8000/api/register/', {
         username: name,
         email: email,
         password: password
@@ -115,7 +115,7 @@ const Register = () => {
           </div>
           <div className='mb-4'>
             <label htmlFor="cpassword" className='font-semibold'>Confirm Password </label>
-            <input type="password" id="password" className='w-full mt-2 p-2 border border-slate-500 rounded-md' placeholder='*******'
+            <input type="password" id="cpassword" className='w-full mt-2 p-2 border border-slate-500 rounded-md' placeholder='*******'
               onChange={(e) => {
                 setCpassword(e.target.value);
               }}

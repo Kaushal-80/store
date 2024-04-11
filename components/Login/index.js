@@ -33,7 +33,7 @@ const Login = () => {
 
 
     try {
-      const res = await axios.post('http://127.0.0.1:8000/login/', { username: email, password: password });
+      const res = await axios.post('http://127.0.0.1:8000/api/login/', { username: email, password: password });
       if (res.status === 200) {
         const token = res.data.token;
         Cookies.set('token', token);
@@ -68,7 +68,8 @@ const Login = () => {
           progress: undefined,
           theme: "light",
       });
-      } else {
+      } 
+      else {
         toast.error("An error occurred. Please try again later.", {
           position: "top-center",
           autoClose: 5000,
@@ -94,7 +95,7 @@ const Login = () => {
         <div className='text-xl font-bold mb-6'>Login</div>
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
-            <label htmlFor="email" className='font-semibold block mb-1'> Email </label> <br></br>
+            <label htmlFor="email" className='font-semibold block mb-1'> Email </label>
             <input type="text" id="email" name="email" className='w-full mt-2 p-2 border border-slate-500 rounded-md' placeholder='johnDoe@gmail.com'
               onChange={e => setEmail(e.target.value)}
             />
