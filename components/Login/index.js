@@ -33,7 +33,7 @@ const Login = () => {
 
 
     try {
-      const res = await axios.post('http://127.0.0.1:8000/api/login/', { username: email, password: password });
+      const res = await axios.post('http://54.206.85.82/api/login/', { username: email, password: password });
       if (res.status === 200) {
         const token = res.data.token;
         Cookies.set('token', token);

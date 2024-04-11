@@ -21,7 +21,7 @@ const Coupon = () => {
   useEffect(() => {
     if (id) {
       // fetch the record with the specified id from your server-side API endpoint
-      axios.get('http://127.0.0.1:8000/api/form/' + id + '/', {
+      axios.get('http://54.206.85.82/api/form/' + id + '/', {
         headers: {
           Authorization: `Token ${Cookies.get('token')}`,
         },

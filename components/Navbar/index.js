@@ -56,7 +56,7 @@ const Navbar = ({ cookies }) => {
                         Authorization: `Token ${token}`
                     }
                 }
-                const res = await axios.get('http://127.0.0.1:8000/api/user/', config)
+                const res = await axios.get('http://54.206.85.82/api/user/', config)
                 setUser(res.data)
             } catch (err) {
                 console.log(err);

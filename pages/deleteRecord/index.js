@@ -24,7 +24,7 @@ const DeleteRecord = () => {
 
     // data getting through api
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/delrecord/', {
+        axios.get('http://54.206.85.82/api/delrecord/', {
 
             headers: {
                 Authorization: `Token ${Cookies.get('token')}`,
@@ -88,7 +88,7 @@ const DeleteRecord = () => {
 
 
     const exportToExcel = () => {
-        let apiUrl = 'http://127.0.0.1:8000/api/delexp/';
+        let apiUrl = 'http://54.206.85.82/api/delexp/';
         let filename = 'customer_data.xlsx'; // Default filename
     
          // If startDate and endDate are set, format them and append as query parameters
